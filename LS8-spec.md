@@ -44,7 +44,7 @@ The register is made up of 8 bits. If a particular bit is set, that flag is "tru
 The LS-8 has 8-bit addressing, so can address 256 bytes of RAM total.
 
 Memory map:
-
+ = self.ram_read(self.pc + 1)
 ```
       top of RAM
 +-----------------------+
