@@ -21,28 +21,23 @@ class CPU:
             0b00000001: self.opp_HLT,
             0b10000010: self.opp_LDI,
             0b01000111: self.opp_PRN,
+            0b10100010: self.opp_MUL,
         }
 
-    def load(self):
+    def load(self, file):
         """Load a program into memory."""
 
         address = 0
 
-        # For now, we've just hardcoded a program:
+        with open(file) as source:
+            for line in source:
+                code = line.split('#')
+                opp = code[0].strip()
+                if code == '':
+                    continue
 
-        program = [
-            # From print8.ls8
-            0b10000010, # LDI R0,8
-            0b00000000,
-            0b00001000,
-            0b01000111, # PRN R0
-            0b00000000,
-            0b00000001, # HLT
-        ]
-
-        for instruction in program:
-            self.ram[address] = instruction
-            address += 1
+                self.ram[address] = int(opp,2)
+                address += 1
 
     def ram_read(self, memaddr):
         return self.ram[memaddr]
