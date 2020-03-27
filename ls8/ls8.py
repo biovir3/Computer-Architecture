@@ -5,7 +5,12 @@
 import sys
 from cpu import *
 
-cpu = CPU()
+argv = sys.argv
 
-cpu.load()
-cpu.run()
+if len(argv) != 2:
+    print('python ls8 (Source File)')
+    exit()
+else:
+    cpu = CPU()
+    cpu.load(argv[1])
+    cpu.run()
